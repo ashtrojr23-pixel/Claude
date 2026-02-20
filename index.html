@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashraf Abdalla | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --gold-dark: #8B6914;
+    --crimson: #8B0000;
+    --crimson-light: #C41E3A;
+    --parchment: #F5E6C8;
+    --parchment-dark: #DEC89A;
+    --ink: #1A0A00;
+    --sepia: #3D2B1F;
+    --bg-dark: #0D0700;
+    --bg-mid: #1A0E05;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg-dark);
+    color: var(--parchment);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.07'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  header {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 60px 20px;
+    background:
+      radial-gradient(ellipse at center, rgba(201,168,76,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse at top, rgba(139,0,0,0.2) 0%, transparent 60%),
+      linear-gradient(180deg, #0D0700 0%, #1A0E05 50%, #0D0700 100%);
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px),
+      repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(201,168,76,0.03) 40px, rgba(201,168,76,0.03) 41px);
+    pointer-events: none;
+  }
+
+  .header-frame {
+    border: 2px solid var(--gold-dark);
+    padding: 50px 60px;
+    position: relative;
+    max-width: 820px;
+    width: 100%;
+  }
+
+  .corner-tl, .corner-tr, .corner-bl, .corner-br {
+    position: absolute;
+    color: var(--gold);
+    font-size: 1.8rem;
+    line-height: 1;
+  }
+  .corner-tl { top: -14px; left: -8px; }
+  .corner-tr { top: -14px; right: -8px; }
+  .corner-bl { bottom: -14px; left: -8px; }
+  .corner-br { bottom: -14px; right: -8px; }
+
+  .profile-frame {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    padding: 4px;
+    margin: 0 auto 30px;
+    box-shadow:
+      0 0 0 2px var(--crimson),
+      0 0 30px rgba(201,168,76,0.5),
+      0 0 60px rgba(201,168,76,0.2),
+      inset 0 0 20px rgba(139,0,0,0.3);
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 2px var(--crimson), 0 0 30px rgba(201,168,76,0.5), 0 0 60px rgba(201,168,76,0.2);
+    }
+    50% {
+      box-shadow: 0 0 0 2px var(--crimson), 0 0 45px rgba(201,168,76,0.8), 0 0 90px rgba(201,168,76,0.4);
+    }
+  }
+
+  .profile-frame img {
+    width: 100%; height: 100%;
+    border-radius: 50%; object-fit: cover; display: block;
+  }
+
+  .profile-placeholder {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sepia), var(--bg-mid));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem; color: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light), var(--gold), var(--gold-light), var(--gold-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    filter: drop-shadow(0 2px 8px rgba(201,168,76,0.4));
+  }
+
+  .header-divider {
+    width: 200px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--crimson), var(--gold), transparent);
+    margin: 20px auto; position: relative;
+  }
+  .header-divider::before {
+    content: '❦';
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    color: var(--gold); font-size: 1.4rem;
+    background: var(--bg-dark); padding: 0 8px;
+  }
+
+  .tagline {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    color: var(--parchment-dark);
+    font-size: 1rem; letter-spacing: 1px;
+    margin-top: 8px; opacity: 0.85;
+  }
+
+  .ceo-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--gold);
+    margin-top: 14px; padding: 8px 24px;
+    border: 1px solid rgba(201,168,76,0.4);
+    display: inline-block;
+    background: rgba(201,168,76,0.06);
+  }
+  .ceo-badge::before { content: '◆'; color: var(--crimson); font-size: 0.6rem; margin-right: 8px; vertical-align: middle; }
+  .ceo-badge::after  { content: '◆'; color: var(--crimson); font-size: 0.6rem; margin-left: 8px; vertical-align: middle; }
+
+  .btn-download {
+    display: inline-block; margin-top: 30px; padding: 14px 40px;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold));
+    color: var(--ink); font-family: 'Cinzel', serif; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase;
+    text-decoration: none; border: 2px solid var(--gold-dark);
+    transition: all 0.4s ease;
+    clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0% 50%);
+  }
+  .btn-download:hover {
+    background: linear-gradient(135deg, var(--crimson), var(--crimson-light), var(--crimson));
+    color: var(--gold-light); transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(196,30,58,0.5);
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,7,0,0.95);
+    border-bottom: 2px solid var(--gold-dark);
+    padding: 12px 5%; display: flex; justify-content: center;
+    gap: 8px; flex-wrap: wrap; backdrop-filter: blur(10px);
+  }
+  nav a {
+    color: var(--parchment-dark); font-family: 'Cinzel', serif;
+    font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; padding: 6px 16px;
+    border: 1px solid transparent; transition: all 0.3s ease;
+  }
+  nav a:hover {
+    color: var(--gold); border-color: var(--gold-dark);
+    background: rgba(201,168,76,0.08);
+  }
+
+  section {
+    padding: 80px 8%; max-width: 1100px; margin: 0 auto;
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  section.visible { opacity: 1; transform: translateY(0); }
+
+  .section-header { text-align: center; margin-bottom: 50px; }
+  .section-header h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--gold); letter-spacing: 4px; text-transform: uppercase;
+  }
+  .section-ornament {
+    width: 300px; max-width: 80%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 12px auto 0; position: relative;
+  }
+  .section-ornament::before {
+    content: '◆'; position: absolute; top: -8px; left: 50%;
+    transform: translateX(-50%); color: var(--gold); font-size: 0.8rem;
+  }
+
+  .card {
+    background: linear-gradient(135deg, rgba(61,43,31,0.5), rgba(26,14,5,0.8));
+    border: 1px solid var(--gold-dark);
+    padding: 35px 40px; position: relative;
+    margin-bottom: 25px; transition: all 0.4s ease;
+  }
+  .card::before {
+    content: ''; position: absolute; inset: 3px;
+    border: 1px solid rgba(201,168,76,0.2); pointer-events: none;
+  }
+  .card:hover {
+    transform: translateY(-5px); border-color: var(--gold);
+    box-shadow: 0 10px 40px rgba(201,168,76,0.15);
+  }
+  .card p { line-height: 1.9; color: var(--parchment-dark); font-size: 1.05rem; }
+.timeline { position: relative; padding-left: 30px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 10px; bottom: 10px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), var(--crimson), var(--gold));
+  }
+  .timeline-item {
+    position: relative; margin-bottom: 30px; padding: 20px 25px;
+    background: linear-gradient(135deg, rgba(61,43,31,0.4), rgba(26,14,5,0.7));
+    border: 1px solid rgba(201,168,76,0.3); transition: all 0.3s ease;
+  }
+  .timeline-item::before {
+    content: '◆'; position: absolute; left: -41px; top: 50%;
+    transform: translateY(-50%); color: var(--gold); font-size: 0.9rem;
+    background: var(--bg-dark); padding: 2px;
+  }
+  .timeline-item:hover {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(61,43,31,0.6), rgba(26,14,5,0.9));
+    transform: translateX(5px);
+  }
+  .timeline-item strong {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 0.9rem; letter-spacing: 1px; display: block; margin-bottom: 6px;
+  }
+  .timeline-item span { color: var(--parchment-dark); font-style: italic; font-size: 1rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 25px; }
+
+  .referee-card {
+    background: linear-gradient(135deg, rgba(61,43,31,0.5), rgba(26,14,5,0.8));
+    border: 1px solid var(--gold-dark); padding: 30px;
+    position: relative; text-align: center; transition: all 0.4s ease;
+  }
+  .referee-card::before {
+    content: '⚜'; position: absolute; top: -14px; left: 50%;
+    transform: translateX(-50%); color: var(--gold); font-size: 1.6rem;
+    background: var(--bg-dark); padding: 0 8px;
+  }
+  .referee-card:hover {
+    transform: translateY(-8px); border-color: var(--gold);
+    box-shadow: 0 15px 40px rgba(201,168,76,0.2);
+  }
+  .referee-card h3 {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    font-size: 1rem; letter-spacing: 1px; margin-bottom: 8px;
+  }
+  .referee-card p { color: var(--parchment-dark); font-size: 0.9rem; line-height: 1.7; font-style: italic; }
+  .referee-card .phone {
+    margin-top: 10px; color: var(--gold-light); font-style: normal;
+    font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 1px;
+  }
+
+  .strengths-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; }
+  .strength-item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 16px 20px;
+    background: rgba(201,168,76,0.05); border-left: 3px solid var(--gold-dark);
+    border-bottom: 1px solid rgba(201,168,76,0.15); transition: all 0.3s;
+  }
+  .strength-item:hover {
+    border-left-color: var(--crimson);
+    background: rgba(201,168,76,0.1); transform: translateX(4px);
+  }
+  .strength-item .s-icon { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; }
+  .strength-item span { color: var(--parchment-dark); font-size: 0.95rem; line-height: 1.5; }
+
+  .contact-btns {
+    display: flex; flex-wrap: wrap; gap: 16px;
+    justify-content: center; margin-bottom: 40px;
+  }
+  .contact-btns a {
+    display: inline-flex; align-items: center; gap: 10px; padding: 14px 30px;
+    font-family: 'Cinzel', serif; font-size: 0.78rem; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    border: 2px solid var(--gold-dark); position: relative; overflow: hidden;
+    transition: all 0.4s ease; color: var(--gold-light);
+    background: rgba(201,168,76,0.05);
+  }
+  .contact-btns a::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    transform: translateX(-105%); transition: transform 0.4s ease; z-index: 0;
+  }
+  .contact-btns a:hover::before { transform: translateX(0); }
+  .contact-btns a:hover { color: var(--ink); border-color: var(--gold); }
+  .contact-btns a span { position: relative; z-index: 1; }
+  .contact-btns .btn-wa { border-color: rgba(37,211,102,0.5); }
+  .contact-btns .btn-wa::before { background: linear-gradient(135deg, #25d366, #128C7E); }
+  .contact-btns .btn-wa:hover { color: #fff; border-color: #25d366; }
+  .contact-btns .btn-ig { border-color: rgba(196,30,58,0.5); }
+  .contact-btns .btn-ig::before { background: linear-gradient(135deg, var(--crimson), var(--crimson-light)); }
+  .contact-btns .btn-ig:hover { color: #fff; border-color: var(--crimson-light); }
+
+  .form-card {
+    background: linear-gradient(135deg, rgba(61,43,31,0.5), rgba(26,14,5,0.8));
+    border: 1px solid var(--gold-dark); padding: 40px; position: relative;
+  }
+  .form-card h3 {
+    font-family: 'Cinzel', serif; color: var(--gold);
+    letter-spacing: 2px; font-size: 1.1rem; margin-bottom: 8px;
+  }
+  .form-card > p { color: var(--parchment-dark); font-style: italic; margin-bottom: 25px; font-size: 0.95rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  form input, form textarea {
+    width: 100%; padding: 12px 16px;
+    background: rgba(26,14,5,0.9); border: 1px solid var(--gold-dark);
+    color: var(--parchment); font-family: 'EB Garamond', serif;
+    font-size: 1rem; outline: none; transition: border-color 0.3s; margin-bottom: 16px;
+  }
+  form input:focus, form textarea:focus {
+    border-color: var(--gold); box-shadow: 0 0 15px rgba(201,168,76,0.1);
+  }
+  form input::placeholder, form textarea::placeholder {
+    color: rgba(222,200,154,0.4); font-style: italic;
+  }
+  form textarea { resize: vertical; min-height: 120px; }
+
+  .btn-submit {
+    display: inline-block; padding: 14px 50px;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+    color: var(--ink); font-family: 'Cinzel', serif; font-weight: 700;
+    font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase;
+    border: none; cursor: pointer; transition: all 0.4s ease;
+    clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 50%, calc(100% - 10px) 100%, 10px 100%, 0% 50%);
+  }
+  .btn-submit:hover {
+    background: linear-gradient(135deg, var(--crimson), var(--crimson-light));
+    color: var(--gold-light); transform: scale(1.04);
+  }
+
+  .tribridge-banner {
+    margin-top: 40px; border: 2px solid var(--gold-dark); position: relative;
+    background: linear-gradient(135deg, rgba(139,0,0,0.15), rgba(26,14,5,0.9), rgba(201,168,76,0.08));
+    overflow: hidden;
+  }
+  .tribridge-banner::before {
+    content: ''; position: absolute; inset: 3px;
+    border: 1px solid rgba(201,168,76,0.15); pointer-events: none; z-index: 0;
+  }
+  .tribridge-banner::after {
+    content: 'TRIBRIDGE STUDIOS';
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 6px;
+    color: var(--gold); background: var(--bg-dark); padding: 0 16px; white-space: nowrap;
+  }
+  .tribridge-inner { padding: 40px; text-align: center; position: relative; z-index: 1; }
+  .tribridge-label {
+    font-family: 'Cinzel', serif; font-size: 1rem;
+    color: var(--gold-light); letter-spacing: 2px; margin-bottom: 10px;
+  }
+  .tribridge-sub {
+    font-style: italic; color: var(--parchment-dark);
+    font-size: 0.95rem; margin-bottom: 28px; opacity: 0.85;
+  }
+  .btn-tribridge {
+    display: inline-flex; align-items: center; gap: 14px; padding: 16px 44px;
+    background: linear-gradient(135deg, var(--crimson), #6B0000, var(--crimson-light));
+    border: 2px solid var(--gold-dark); color: var(--gold-light);
+    font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+    transition: all 0.4s ease; position: relative; overflow: hidden;
+    clip-path: polygon(14px 0%, calc(100% - 14px) 0%, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0% 50%);
+  }
+  .btn-tribridge::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+    transform: translateX(-110%); transition: transform 0.5s ease; z-index: 0;
+  }
+  .btn-tribridge:hover::before { transform: translateX(0); }
+  .btn-tribridge:hover { color: var(--ink); border-color: var(--gold); box-shadow: 0 0 30px rgba(201,168,76,0.35); }
+  .btn-tribridge > * { position: relative; z-index: 1; }
+  .tb-arrow { transition: transform 0.3s; }
+  .btn-tribridge:hover .tb-arrow { transform: translateX(6px); }
+
+  .full-divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dark), var(--gold), var(--gold-dark), transparent);
+  }
+
+  footer {
+    border-top: 2px solid var(--gold-dark); padding: 40px 5%;
+    text-align: center; background: linear-gradient(180deg, var(--bg-dark), #000);
+  }
+  footer::before {
+    content: '✦ ✦ ✦'; display: block; color: var(--gold);
+    font-size: 1rem; letter-spacing: 12px; margin-bottom: 16px;
+  }
+  footer p {
+    font-family: 'Cinzel', serif; color: var(--gold-dark);
+    font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+  }
+
+  .scroll-top {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--ink); display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; cursor: pointer; border: none;
+    opacity: 0; transition: all 0.4s; z-index: 200;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  .scroll-top.show { opacity: 1; }
+  .scroll-top:hover {
+    background: linear-gradient(135deg, var(--crimson), var(--crimson-light));
+    color: var(--gold-light);
+  }
+
+  @media (max-width: 600px) {
+    .header-frame { padding: 35px 25px; }
+    .form-row { grid-template-columns: 1fr; }
+    section { padding: 60px 5%; }
+    .contact-btns a { padding: 12px 20px; }
+    .card { padding: 25px 20px; }
+    .tribridge-inner { padding: 30px 20px; }
+    .btn-tribridge { padding: 14px 28px; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+<header id="home">
+  <div class="header-frame">
+    <span class="corner-tl">✦</span>
+    <span class="corner-tr">✦</span>
+    <span class="corner-bl">✦</span>
+    <span class="corner-br">✦</span>
+
+    <div class="profile-frame">
+      <img src="IMG_20260219_141133.jpg" alt="Ashraf Abdalla"
+        onerror="this.style.display='none';document.getElementById('ph').style.display='flex';">
+      <div class="profile-placeholder" id="ph" style="display:none;">⚜</div>
+    </div>
+
+    <h1>Ashraf Abdalla</h1>
+    <div class="header-divider"></div>
+    <p class="tagline">Aspiring Nurse &nbsp;·&nbsp; Multilingual Communicator &nbsp;·&nbsp; Counselling Psychology &nbsp;·&nbsp; HTML Coder</p>
+    <p class="ceo-badge">CEO &amp; Founder &nbsp;—&nbsp; TriBridge Services &nbsp;/&nbsp; TriBridge Studios</p>
+    <a href="https://ashraf-abdalla-resume.onrender.com" class="btn-download" target="_blank">⬇ &nbsp; Download Curriculum Vitæ</a>
+  </div>
+</header>
+
+<nav>
+  <a href="#mission">Mission</a>
+  <a href="#vision">Vision</a>
+  <a href="#academics">Academics</a>
+  <a href="#leadership">Leadership</a>
+  <a href="#strengths">Strengths</a>
+  <a href="#referees">Referees</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="full-divider"></div>
+
+<section id="mission">
+  <div class="section-header">
+    <h2>Mission Statement</h2>
+    <div class="section-ornament"></div>
+  </div>
+  <div class="card">
+    <p>My mission is to pursue a professional career in nursing and healthcare where I can integrate academic excellence, empathy, multilingual communication, and structured psychological understanding to improve patient wellbeing and community health outcomes.</p>
+  </div>
+</section>
+
+<div class="full-divider" style="max-width:800px;margin:0 auto;opacity:0.4;"></div>
+
+<section id="vision">
+  <div class="section-header">
+    <h2>Career Vision</h2>
+    <div class="section-ornament"></div>
+  </div>
+  <div class="card">
+    <p>I envision becoming a highly competent and ethically grounded healthcare professional who contributes meaningfully to modern medical systems. Through continuous education, practical experience, and leadership development, I aim to serve diverse communities and advocate for accessible, compassionate healthcare.</p>
+  </div>
+</section>
+
+<section id="academics">
+  <div class="section-header">
+    <h2>Academic Timeline</h2>
+    <div class="section-ornament"></div>
+  </div>
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item">
+        <strong>2014 – 2021</strong>
+        <span>Kipketer Primary School — KCPE: 366/500 &nbsp;(B+)</span>
+      </div>
+      <div class="timeline-item">
+        <strong>2022 – 2025</strong>
+        <span>Njoro Boys High School — KCSE: C+</span>
+      </div>
+      <div class="timeline-item">
+        <strong>July 2024</strong>
+        <span>Counselling Psychology Certificate — Certified</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership">
+  <div class="section-header">
+    <h2>Leadership &amp; Community</h2>
+    <div class="section-ornament"></div>
+  </div>
+  <div class="card">
+    <p>Leadership through mentoring peers, coordinating academic groups, and supporting school initiatives. Applied counselling knowledge to assist peers with academic and personal challenges. Committed to community engagement and continuous learning as foundations for future healthcare leadership.</p>
+  </div>
+</section>
+
+<section id="strengths">
+  <div class="section-header">
+    <h2>Core Strengths</h2>
+    <div class="section-ornament"></div>
+  </div>
+  <div class="card">
+    <div class="strengths-list">
+      <div class="strength-item"><span class="s-icon">⚜</span><span>English &amp; Swahili — Professional Fluency</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>French — Advanced Proficiency</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>Patient Counselling &amp; Emotional Support</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>Healthcare Assistance Knowledge</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>Organization, Planning &amp; Structured Thinking</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>HTML Coding &amp; Web Development</span></div>
+      <div class="strength-item"><span class="s-icon">👑</span><span>Entrepreneurship — CEO &amp; Founder, TriBridge Services / TriBridge Studios</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="referees">
+  <div class="section-header">
+    <h2>Referees</h2>
+    <div class="section-ornament"></div>
+  </div>
+  <div class="grid">
+    <div class="referee-card">
+      <h3>Elizabeth Wanyoike</h3>
+      <p>School Counsellor<br>Njoro Boys High School</p>
+      <p class="phone">0754 683 495</p>
+    </div>
+    <div class="referee-card">
+      <h3>Jackob Haywood Ondiko</h3>
+      <p>French Teacher &amp; Mentor<br>Njoro Boys High School</p>
+      <p class="phone">0712 062 375</p>
+    </div>
+    <div class="referee-card">
+      <h3>Mogaka Stephen</h3>
+      <p>Class Teacher &amp; Mentor<br>Njoro Boys High School</p>
+      <p class="phone">0723 229 142</p>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="section-header">
+    <h2>Contact Me</h2>
+    <div class="section-ornament"></div>
+  </div>
+
+  <div class="contact-btns">
+    <a href="mailto:ashrafabdalla2o7@gmail.com">
+      <span>✉ &nbsp; Email Me</span>
+    </a>
+    <a href="https://wa.me/254785117163?text=Hi%20Ashraf%2C%20I%20would%20like%20to%20know%20more%20about%20your%20professional%20journey%20and%20services.%20Looking%20forward%20to%20hearing%20from%20you." target="_blank" class="btn-wa">
+      <span>📱 &nbsp; WhatsApp</span>
+    </a>
+    <a href="https://instagram.com/4_.5h.r4f" target="_blank" class="btn-ig">
+      <span>📷 &nbsp; Instagram</span>
+    </a>
+  </div>
+
+  <div class="form-card">
+    <h3>Request an Introduction</h3>
+    <p>Fill in your details below and Ashraf shall reach out to you via Email or WhatsApp.</p>
+    <form action="mailto:ashrafabdalla2o7@gmail.com" method="post" enctype="text/plain">
+      <div class="form-row">
+        <input type="text" name="Name" placeholder="Your Full Name" required>
+        <input type="email" name="Email" placeholder="Your Email Address" required>
+      </div>
+      <input type="tel" name="Phone" placeholder="Your Phone Number" required>
+      <textarea name="Message" placeholder="Your Message..." rows="5" required></textarea>
+      <button type="submit" class="btn-submit">✦ &nbsp; Submit &nbsp; ✦</button>
+    </form>
+  </div>
+
+  <div class="tribridge-banner">
+    <div class="tribridge-inner">
+      <p class="tribridge-label">Beyond this portfolio, a creative empire awaits.</p>
+      <p class="tribridge-sub">Step into the world Ashraf built from the ground up — where vision meets craft and ambition takes form.</p>
+      <a href="https://tribridge-services.onrender.com" target="_blank" class="btn-tribridge">
+        <span>🎬</span>
+        <span>Visit TriBridge Studios</span>
+        <span class="tb-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<footer>
+  <p>&copy; 2026 &nbsp;·&nbsp; Ashraf Abdalla &nbsp;·&nbsp; Academic Portfolio &nbsp;·&nbsp; All Rights Reserved</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+
+<script>
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section').forEach(function(s) {
+    obs.observe(s);
+  });
+
+  var scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', function() {
+    scrollBtn.classList.toggle('show', window.scrollY > 400);
+    var current = '';
+    document.querySelectorAll('section[id]').forEach(function(s) {
+      if (window.scrollY >= s.offsetTop - 200) { current = s.id; }
+    });
+    document.querySelectorAll('nav a').forEach(function(a) {
+      a.style.color = (a.getAttribute('href') === '#' + current) ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
