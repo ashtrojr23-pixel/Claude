@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TriBridge Studio | Web · French · Counselling</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Satisfy&display=swap" rel="stylesheet">
+<style>
+/* ===== THEME VARIABLES ===== */
+[data-theme="light"] {
+  --bg: #FDF8F0;
+  --bg2: #FFF5E6;
+  --bg3: #FFEFD5;
+  --surface: #FFFFFF;
+  --surface2: #FFF9F2;
+  --text: #1C1008;
+  --text2: #5C3D1E;
+  --text3: #8B6840;
+  --accent: #D4650A;
+  --accent2: #E8901A;
+  --accent3: #F5B942;
+  --teal: #0E7C7B;
+  --teal2: #1AA5A3;
+  --border: rgba(212,101,10,0.15);
+  --shadow: rgba(212,101,10,0.12);
+  --card-bg: #FFFFFF;
+  --nav-bg: rgba(253,248,240,0.95);
+  --toggle-bg: #E8D5B8;
+  --toggle-knob: #D4650A;
+  --hero-overlay: linear-gradient(135deg, #FFF8EE 0%, #FFE8C8 50%, #FFF3E0 100%);
+}
+
+[data-theme="dark"] {
+  --bg: #0F0A04;
+  --bg2: #160D05;
+  --bg3: #1E1208;
+  --surface: #1E1208;
+  --surface2: #261708;
+  --text: #FDF0DC;
+  --text2: #D4AA7A;
+  --text3: #8B7355;
+  --accent: #F07820;
+  --accent2: #F5A030;
+  --accent3: #FAC842;
+  --teal: #1AA5A3;
+  --teal2: #2ECAC8;
+  --border: rgba(240,120,32,0.2);
+  --shadow: rgba(0,0,0,0.4);
+  --card-bg: #1E1208;
+  --nav-bg: rgba(15,10,4,0.97);
+  --toggle-bg: #2E1C08;
+  --toggle-knob: #FAC842;
+  --hero-overlay: linear-gradient(135deg, #0F0A04 0%, #1E1208 50%, #160D05 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.4s, color 0.4s;
+  overflow-x: hidden;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  transition: background 0.4s;
+}
+
+.logo-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.logo-btn:hover { transform: scale(1.05) rotate(-1deg); }
+
+/* SVG LOGO */
+.logo-svg {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-family: 'Satisfy', cursive;
+  font-size: 1.5rem;
+  color: var(--accent);
+  line-height: 1;
+}
+.logo-tagline {
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--text2);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* DARK MODE TOGGLE */
+.toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  cursor: pointer;
+}
+.toggle input { opacity: 0; width: 0; height: 0; }
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--toggle-bg);
+  border-radius: 14px;
+  transition: background 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 0.7rem;
+}
+.toggle-knob {
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 22px; height: 22px;
+  background: var(--toggle-knob);
+  border-radius: 50%;
+  transition: transform 0.4s, background 0.4s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+.toggle input:checked ~ .toggle-knob { transform: translateX(24px); }
+
+.btn-nav {
+  background: var(--accent);
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 9px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-nav:hover {
+  background: var(--accent2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow);
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--hero-overlay);
+  padding: 100px 8% 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,101,10,0.08) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  animation: float 8s ease-in-out infinite;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,124,123,0.07) 0%, transparent 70%);
+  bottom: -50px; left: -50px;
+  animation: float 10s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212,101,10,0.1);
+  border: 1px solid rgba(212,101,10,0.3);
+  color: var(--accent);
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  animation: slideDown 0.8s ease both;
+}
+.hero-badge::before { content: '✦'; font-size: 0.7rem; }
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  line-height: 1.1;
+  font-weight: 900;
+  margin-bottom: 20px;
+  animation: slideUp 0.9s ease 0.1s both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+  position: relative;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text2);
+  line-height: 1.8;
+  margin-bottom: 36px;
+  font-weight: 300;
+  animation: slideUp 0.9s ease 0.2s both;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: slideUp 0.9s ease 0.3s both;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 30px rgba(212,101,10,0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(212,101,10,0.45);
+  background: var(--accent2);
+}
+
+.btn-secondary {
+  color: var(--accent);
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: 2px solid var(--accent);
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-secondary:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.hero-visual {
+  position: absolute;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  animation: slideLeft 1s ease 0.2s both;
+}
+
+.hero-card-stack {
+  position: relative;
+  width: 320px;
+}
+
+.floating-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: 0 20px 60px var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  white-space: nowrap;
+}
+
+.floating-card.c1 {
+  transform: rotate(-3deg);
+  animation: bobble1 5s ease-in-out infinite;
+  margin-bottom: -10px;
+  margin-left: -20px;
+}
+.floating-card.c2 {
+  transform: rotate(2deg);
+  animation: bobble2 6s ease-in-out infinite;
+  margin-bottom: -10px;
+  margin-left: 20px;
+  z-index: 2;
+  position: relative;
+}
+.floating-card.c3 {
+  transform: rotate(-1deg);
+  animation: bobble3 7s ease-in-out infinite;
+  margin-left: 0;
+}
+
+@keyframes bobble1 {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(-3deg) translateY(-8px); }
+}
+@keyframes bobble2 {
+  0%, 100% { transform: rotate(2deg) translateY(0); }
+  50% { transform: rotate(2deg) translateY(-12px); }
+}
+@keyframes bobble3 {
+  0%, 100% { transform: rotate(-1deg) translateY(0); }
+  50% { transform: rotate(-1deg) translateY(-6px); }
+}
+
+.fc-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.fc-icon.orange { background: rgba(212,101,10,0.15); }
+.fc-icon.teal { background: rgba(14,124,123,0.15); }
+.fc-icon.gold { background: rgba(245,185,66,0.2); }
+
+.fc-text strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.fc-text span {
+  font-size: 0.75rem;
+  color: var(--text3);
+}
+
+@keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideLeft { from { opacity: 0; transform: translateY(-50%) translateX(60px); } to { opacity: 1; transform: translateY(-50%) translateX(0); } }
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  background: var(--accent);
+  padding: 28px 8%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: center;
+  color: white;
+}
+.stat-item .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  display: block;
+}
+.stat-item .lbl {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 90px 8%;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-label {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  position: relative;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: var(--accent);
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  color: var(--text2);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 560px;
+  font-weight: 300;
+}
+
+/* ===== SERVICES ===== */
+#services { background: var(--bg2); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+  margin-top: 52px;
+}
+
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 36px 32px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--gradient);
+  border-radius: 24px 24px 0 0;
+}
+
+.service-card.web { --gradient: linear-gradient(90deg, #D4650A, #F5B942); }
+.service-card.french { --gradient: linear-gradient(90deg, #0E7C7B, #1AA5A3); }
+.service-card.counsel { --gradient: linear-gradient(90deg, #7B4ACB, #B68AEA); }
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 70px var(--shadow);
+  border-color: transparent;
+}
+
+.service-icon {
+  width: 64px; height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+.web .service-icon { background: rgba(212,101,10,0.12); }
+.french .service-icon { background: rgba(14,124,123,0.12); }
+.counsel .service-icon { background: rgba(123,74,203,0.12); }
+
+.service-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  color: var(--text2);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 28px;
+  font-weight: 300;
+}
+
+.service-features {
+  list-style: none;
+  margin-bottom: 28px;
+}
+.service-features li {
+  font-size: 0.88rem;
+  color: var(--text2);
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.service-features li::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.french .service-features li::before { color: var(--teal); }
+.counsel .service-features li::before { color: #7B4ACB; }
+
+/* PRICING */
+.pricing-block {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.price-label {
+  font-size: 0.8rem;
+  color: var(--text3);
+}
+.price-val {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.price-from {
+  font-size: 0.75rem;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+
+.btn-service {
+  display: block;
+  text-align: center;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: all 0.3s;
+  border: 2px solid;
+}
+.web .btn-service { border-color: var(--accent); color: var(--accent); }
+.web .btn-service:hover { background: var(--accent); color: white; }
+.french .btn-service { border-color: var(--teal); color: var(--teal); }
+.french .btn-service:hover { background: var(--teal); color: white; }
+.counsel .btn-service { border-color: #7B4ACB; color: #7B4ACB; }
+.counsel .btn-service:hover { background: #7B4ACB; color: white; }
+
+/* ===== REVIEWS ===== */
+#reviews { background: var(--bg); }
+
+.stars-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.star { font-size: 1.4rem; }
+.star.filled { color: #F5B942; }
+.star.half { color: #F5B942; opacity: 0.6; }
+.rating-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-left: 6px;
+}
+.rating-count {
+  font-size: 0.85rem;
+  color: var(--text3);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 44px;
+}
+
+.review-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.review-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px var(--shadow);
+}
+
+.review-card::before {
+  content: '"';
+  position: absolute;
+  top: 16px; right: 22px;
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  color: var(--accent);
+  opacity: 0.12;
+  line-height: 1;
+}
+
+.review-stars { margin-bottom: 14px; }
+.review-stars .star { font-size: 1rem; }
+
+.review-card p {
+  font-size: 0.93rem;
+  color: var(--text2);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.reviewer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviewer-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.reviewer-info strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.reviewer-info span {
+  font-size: 0.78rem;
+  color: var(--text3);
+}
+
+/* ===== ABOUT ===== */
+#about { background: var(--bg3); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  margin-top: 52px;
+}
+
+.about-img-wrap {
+  position: relative;
+}
+
+.about-img {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, var(--bg2), var(--surface));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.about-img-badge {
+  position: absolute;
+  bottom: -16px; right: -16px;
+  background: var(--accent);
+  color: white;
+  border-radius: 16px;
+  padding: 16px 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(212,101,10,0.4);
+}
+.about-img-badge strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  display: block;
+}
+.about-img-badge span { font-size: 0.78rem; opacity: 0.9; }
+
+.about-content { padding: 10px 0; }
+
+.about-content h2 { margin-bottom: 20px; }
+
+.about-content p {
+  color: var(--text2);
+  line-height: 1.9;
+  margin-bottom: 16px;
+  font-weight: 300;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.tag {
+  background: rgba(212,101,10,0.1);
+  color: var(--accent);
+  border: 1px solid rgba(212,101,10,0.25);
+  padding: 7px 16px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.tag.teal { background: rgba(14,124,123,0.1); color: var(--teal); border-color: rgba(14,124,123,0.25); }
+.tag.purple { background: rgba(123,74,203,0.1); color: #7B4ACB; border-color: rgba(123,74,203,0.25); }
+
+/* ===== CONTACT ===== */
+#contact { background: var(--bg2); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 50px;
+  margin-top: 52px;
+}
+
+.contact-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+.contact-info p {
+  color: var(--text2);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.3s;
+}
+.contact-method:hover {
+  border-color: var(--accent);
+  transform: translateX(6px);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+.contact-method .cm-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(212,101,10,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.contact-method.wa .cm-icon { background: rgba(37,211,102,0.1); }
+.contact-method.ig .cm-icon { background: rgba(196,30,58,0.1); }
+.contact-method .cm-text strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.contact-method .cm-text span {
+  font-size: 0.78rem;
+  color: var(--text3);
+}
+
+/* FORM */
+.contact-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 36px;
+}
+.contact-form h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+.contact-form > p {
+  color: var(--text3);
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text2);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+  appearance: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(212,101,10,0.1);
+}
+.form-group textarea { min-height: 110px; resize: vertical; }
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text3);
+  font-size: 0.85rem;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+}
+.btn-submit:hover {
+  background: var(--accent2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(212,101,10,0.35);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--text);
+  color: rgba(255,255,255,0.7);
+  padding: 50px 8% 30px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 36px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-logo .logo-text { color: var(--accent2); }
+.footer-logo .logo-tagline { color: rgba(255,255,255,0.4); }
+
+.footer-links h4 {
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.footer-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer-links a {
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--accent2); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.8rem;
+}
+.footer-bottom a {
+  color: var(--accent2);
+  text-decoration: none;
+}
+
+/* ===== MOBILE NAV OVERLAY ===== */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--nav-bg);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  backdrop-filter: blur(20px);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 1.4rem;
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s;
+}
+.mobile-menu a:hover { color: var(--accent); }
+.mobile-menu .close-btn {
+  position: absolute;
+  top: 24px; right: 24px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .hero { flex-direction: column; text-align: center; }
+  .hero-visual { display: none; }
+  .hero-content { max-width: 100%; }
+  .hero-btns { justify-content: center; }
+  .about-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .btn-nav { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#contact" class="btn-primary" onclick="toggleMenu()">Get a Quote →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo-btn" title="Home">
+    <!-- LOGO SVG -->
+    <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Bridge arches (3 = TriBridge) -->
+      <rect x="2" y="34" width="44" height="5" rx="2.5" fill="var(--accent)"/>
+      <!-- Left arch -->
+      <path d="M4 34 Q10 18 16 34" stroke="var(--accent)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Middle arch (taller) -->
+      <path d="M14 34 Q24 10 34 34" stroke="var(--accent2)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Right arch -->
+      <path d="M32 34 Q38 18 44 34" stroke="var(--accent3)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Stars -->
+      <circle cx="10" cy="20" r="2" fill="var(--accent3)"/>
+      <circle cx="24" cy="11" r="2.5" fill="var(--accent3)"/>
+      <circle cx="38" cy="20" r="2" fill="var(--accent3)"/>
+      <!-- Pillars -->
+      <rect x="13.5" y="28" width="2" height="6" rx="1" fill="var(--accent)"/>
+      <rect x="32.5" y="28" width="2" height="6" rx="1" fill="var(--accent)"/>
+    </svg>
+    <div>
+      <div class="logo-text">TriBridge</div>
+      <div class="logo-tagline">Studio · Est. 2025</div>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <!-- Dark Mode Toggle -->
+    <label class="toggle" title="Toggle dark mode">
+      <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+      <div class="toggle-track">
+        <span>☀️</span><span>🌙</span>
+      </div>
+      <div class="toggle-knob"></div>
+    </label>
+    <a href="#contact" class="btn-nav">Get a Quote</a>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home" style="padding-top:100px; opacity:1; transform:none;">
+  <div class="hero-content">
+    <div class="hero-badge">Nairobi, Kenya · Available Now</div>
+    <h1>Where <em>Creativity</em><br>Meets Expertise</h1>
+    <p>Professional web design, French translation & counselling services — all under one roof. Quality work, honest prices, real results.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Services →</a>
+      <a href="#contact" class="btn-secondary">💬 Let's Talk</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-stack">
+      <div class="floating-card c1">
+        <div class="fc-icon orange">🌐</div>
+        <div class="fc-text">
+          <strong>Landing Page</strong>
+          <span>From KES 15,000</span>
+        </div>
+      </div>
+      <div class="floating-card c2">
+        <div class="fc-icon teal">🇫🇷</div>
+        <div class="fc-text">
+          <strong>French Translation</strong>
+          <span>From KES 500/page</span>
+        </div>
+      </div>
+      <div class="floating-card c3">
+        <div class="fc-icon gold">🧠</div>
+        <div class="fc-text">
+          <strong>Counselling Session</strong>
+          <span>From KES 800/hr</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="num">3+</span>
+    <span class="lbl">Services Offered</span>
+  </div>
+  <div class="stat-item">
+    <span class="num">4★</span>
+    <span class="lbl">Client Rating</span>
+  </div>
+  <div class="stat-item">
+    <span class="num">3</span>
+    <span class="lbl">Languages Spoken</span>
+  </div>
+  <div class="stat-item">
+    <span class="num">100%</span>
+    <span class="lbl">Satisfaction Goal</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">What I Offer</div>
+  <h2 class="section-title">Services Tailored<br>for <em style="font-style:italic;color:var(--accent)">You</em></h2>
+  <p class="section-sub">Whether you need a stunning website, seamless French translation, or professional counselling — I bring genuine skill and care to every project.</p>
+
+  <div class="services-grid">
+
+    <!-- WEB DESIGN -->
+    <div class="service-card web">
+      <div class="service-icon">🌐</div>
+      <h3>Web Design & Development</h3>
+      <p>Beautiful, mobile-first websites that make your business look professional and attract real clients. Clean code, fast load times, and designs that actually convert.</p>
+      <ul class="service-features">
+        <li>Landing pages & portfolio sites</li>
+        <li>Small business websites</li>
+        <li>Mobile responsive design</li>
+        <li>Contact forms & basic SEO</li>
+        <li>Fast turnaround time</li>
+      </ul>
+      <div class="pricing-block">
+        <p class="price-from">Starting prices (2025 market rates):</p>
+        <div class="price-row"><span class="price-label">Landing Page (1–3 pages)</span><span class="price-val">KES 15,000</span></div>
+        <div class="price-row"><span class="price-label">Small Business Site (5 pages)</span><span class="price-val">KES 25,000</span></div>
+        <div class="price-row"><span class="price-label">Full Business Website</span><span class="price-val">KES 50,000+</span></div>
+      </div>
+      <a href="#contact" class="btn-service" style="margin-top:20px">Request a Website →</a>
+    </div>
+
+    <!-- FRENCH TRANSLATION -->
+    <div class="service-card french">
+      <div class="service-icon">🇫🇷</div>
+      <h3>French Translation</h3>
+      <p>Advanced-level French to English (and vice versa) translation. Accurate, natural-sounding results for documents, emails, academic work, and business content.</p>
+      <ul class="service-features">
+        <li>Documents & letters</li>
+        <li>Academic & school work</li>
+        <li>Business emails & reports</li>
+        <li>Proofreading & editing</li>
+        <li>Quick turnaround available</li>
+      </ul>
+      <div class="pricing-block">
+        <p class="price-from">Competitive rates:</p>
+        <div class="price-row"><span class="price-label">Per page (250 words)</span><span class="price-val">KES 500</span></div>
+        <div class="price-row"><span class="price-label">Full document (1,000+ words)</span><span class="price-val">KES 1,500</span></div>
+        <div class="price-row"><span class="price-label">Proofreading only</span><span class="price-val">KES 300/page</span></div>
+      </div>
+      <a href="#contact" class="btn-service" style="margin-top:20px">Request Translation →</a>
+    </div>
+
+    <!-- COUNSELLING -->
+    <div class="service-card counsel">
+      <div class="service-icon">🧠</div>
+      <h3>Counselling & Support</h3>
+      <p>Empathetic, structured, and confidential peer counselling. Drawing from a certified background in counselling psychology to help you navigate life's challenges.</p>
+      <ul class="service-features">
+        <li>Academic stress & pressure</li>
+        <li>Personal & emotional challenges</li>
+        <li>Goal-setting & motivation</li>
+        <li>Peer support sessions</li>
+        <li>Flexible scheduling</li>
+      </ul>
+      <div class="pricing-block">
+        <p class="price-from">Session rates:</p>
+        <div class="price-row"><span class="price-label">Single session (1 hr)</span><span class="price-val">KES 800</span></div>
+        <div class="price-row"><span class="price-label">4-session package</span><span class="price-val">KES 2,800</span></div>
+        <div class="price-row"><span class="price-label">Ongoing monthly support</span><span class="price-val">KES 5,000</span></div>
+      </div>
+      <a href="#contact" class="btn-service" style="margin-top:20px">Book a Session →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-label">Client Reviews</div>
+  <h2 class="section-title">What People Say</h2>
+
+  <div class="stars-display">
+    <span class="star filled">★</span>
+    <span class="star filled">★</span>
+    <span class="star filled">★</span>
+    <span class="star filled">★</span>
+    <span class="star half">★</span>
+    <span class="rating-num">4.0</span>
+    <span class="rating-count">/ 5.0 average rating</span>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
+      </div>
+      <p>Ashraf built my business landing page in just 3 days. It looks incredibly professional and all my clients have complimented it. The price was very fair — totally worth every shilling.</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#D4650A;">AM</div>
+        <div class="reviewer-info">
+          <strong>Amina Mwangi</strong>
+          <span>Small Business Owner, Nairobi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star half">★</span>
+      </div>
+      <p>I needed my French assignment translated urgently and Ashraf delivered in under 2 hours. The translation was natural and accurate — my teacher was impressed. Will use again!</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#0E7C7B;">BK</div>
+        <div class="reviewer-info">
+          <strong>Brian Kamau</strong>
+          <span>University Student, Nakuru</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
+      </div>
+      <p>The counselling sessions really helped me manage my stress during exam period. Ashraf listens without judgement and gives genuinely useful guidance. I feel so much better.</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#7B4ACB;">FO</div>
+        <div class="reviewer-info">
+          <strong>Faith Otieno</strong>
+          <span>High School Student, Njoro</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">
+        <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star">★</span>
+      </div>
+      <p>Good value for a 5-page website. He communicated well throughout the process and fixed my feedback quickly. The site works perfectly on my phone. Recommended for startups.</p>
+      <div class="reviewer">
+        <div class="reviewer-avatar" style="background:#C47A20;">JN</div>
+        <div class="reviewer-info">
+          <strong>James Ndegwa</strong>
+          <span>Entrepreneur, Mombasa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <div class="about-grid">
+    <div class="about-img-wrap">
+      <div class="about-img">
+        <img src="IMG_20260219_141133.jpg" alt="Ashraf Abdalla"
+          onerror="this.style.display='none';this.parentNode.style.fontSize='5rem';this.parentNode.style.color='var(--accent)';this.parentNode.innerHTML='⚜';">
+      </div>
+      <div class="about-img-badge">
+        <strong>⚜</strong>
+        <span>Certified<br>Counsellor</span>
+      </div>
+    </div>
+
+    <div class="about-content">
+      <div class="section-label">The Person Behind TriBridge</div>
+      <h2 class="section-title">Ashraf Abdalla</h2>
+      <p>I'm an aspiring nurse and multi-skilled professional from Kenya with a passion for helping people — whether through tech, language, or listening.</p>
+      <p>With advanced French proficiency, a Counselling Psychology Certificate (July 2024), and hands-on HTML/web development experience, I offer a rare combination of services that bridge communication, wellbeing, and digital presence.</p>
+      <p>My mission is simple: deliver high-quality work at honest prices, with the kind of care and attention that makes clients actually feel good about hiring me.</p>
+      <div class="about-tags">
+        <span class="tag">🌐 Web Design</span>
+        <span class="tag teal">🇫🇷 French (Advanced)</span>
+        <span class="tag purple">🧠 Counselling Psych</span>
+        <span class="tag">🗣️ English & Swahili</span>
+        <span class="tag teal">🏥 Healthcare Aspirant</span>
+        <span class="tag">📐 Structured Thinker</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get In Touch</div>
+  <h2 class="section-title">Let's Work Together</h2>
+  <p class="section-sub">Have a project, a question, or just want to say hi? Reach out via any channel below — I typically respond within 2 hours.</p>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Reach Me Directly</h3>
+      <p>Quick conversations welcome. Whether you're ready to start or just exploring — no pressure, no spam.</p>
+
+      <div class="contact-methods">
+        <a href="mailto:ashrafabdalla2o7@gmail.com" class="contact-method">
+          <div class="cm-icon">✉️</div>
+          <div class="cm-text">
+            <strong>Email</strong>
+            <span>ashrafabdalla2o7@gmail.com</span>
+          </div>
+        </a>
+        <a href="https://wa.me/254785117163?text=Hi%20Ashraf!%20I%20found%20your%20TriBridge%20Studio%20website%20and%20I%27d%20love%20to%20discuss%20a%20project." target="_blank" class="contact-method wa">
+          <div class="cm-icon">📱</div>
+          <div class="cm-text">
+            <strong>WhatsApp</strong>
+            <span>+254 785 117 163</span>
+          </div>
+        </a>
+        <a href="https://instagram.com/4_.5h.r4f" target="_blank" class="contact-method ig">
+          <div class="cm-icon">📷</div>
+          <div class="cm-text">
+            <strong>Instagram</strong>
+            <span>@4_.5h.r4f</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <p>I'll get back to you within 24 hours.</p>
+      <form action="mailto:ashrafabdalla2o7@gmail.com" method="post" enctype="text/plain">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="Name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="Email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" name="Phone" placeholder="+254 ...">
+          </div>
+          <div class="form-group">
+            <label>Service Needed</label>
+            <select name="Service">
+              <option value="">Select a service...</option>
+              <option value="Web Design">🌐 Web Design</option>
+              <option value="French Translation">🇫🇷 French Translation</option>
+              <option value="Counselling">🧠 Counselling</option>
+              <option value="Multiple">💼 Multiple Services</option>
+              <option value="Other">Other / Not Sure</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your Message</label>
+          <textarea name="Message" placeholder="Tell me about your project or what you need help with…" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message ✦</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo logo-btn" style="cursor:default;">
+      <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="34" width="44" height="5" rx="2.5" fill="#F07820"/>
+        <path d="M4 34 Q10 18 16 34" stroke="#F07820" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M14 34 Q24 10 34 34" stroke="#F5A030" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M32 34 Q38 18 44 34" stroke="#FAC842" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="10" cy="20" r="2" fill="#FAC842"/>
+        <circle cx="24" cy="11" r="2.5" fill="#FAC842"/>
+        <circle cx="38" cy="20" r="2" fill="#FAC842"/>
+        <rect x="13.5" y="28" width="2" height="6" rx="1" fill="#F07820"/>
+        <rect x="32.5" y="28" width="2" height="6" rx="1" fill="#F07820"/>
+      </svg>
+      <div>
+        <div class="logo-text">TriBridge</div>
+        <div class="logo-tagline">Studio · Nairobi, Kenya</div>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Web Design</a></li>
+        <li><a href="#services">French Translation</a></li>
+        <li><a href="#services">Counselling</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="mailto:ashrafabdalla2o7@gmail.com">Email</a></li>
+        <li><a href="https://wa.me/254785117163" target="_blank">WhatsApp</a></li>
+        <li><a href="https://instagram.com/4_.5h.r4f" target="_blank">Instagram</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Quick</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Get a Quote</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 TriBridge Studio · Ashraf Abdalla · All rights reserved</span>
+    <span>Made with ❤️ in Nairobi, Kenya</span>
+  </div>
+</footer>
+
+<script>
+  // THEME TOGGLE
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('themeToggle').checked = !isDark;
+  }
+
+  // Check system preference
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('themeToggle').checked = true;
+  }
+
+  // MOBILE MENU
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('section:not(.hero)').forEach(s => observer.observe(s));
+
+  // NAV SHADOW ON SCROLL
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.boxShadow = window.scrollY > 20 ? '0 4px 30px rgba(0,0,0,0.12)' : 'none';
+  });
+</script>
+</body>
+</html>
