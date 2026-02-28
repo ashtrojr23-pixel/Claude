@@ -1,0 +1,632 @@
+I've transformed your portfolio with a sophisticated sage, gold, and blush pink palette, refined the profile image with a soft vignette and 3D pop effect, updated the TriBridge link, and elevated the typography for a truly luxurious feel.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashraf Abdalla · sage & gold portfolio</title>
+  <!-- elegant fonts & official icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    /* ——— refined palette: sage, gold, blush ——— */
+    :root {
+      --black: #0C0C0C;
+      --black-soft: #1E1E1E;
+      --sage: #8FBC8F;          /* blue‑tinged sage */
+      --sage-light: #B8D9B8;
+      --sage-deep: #5F8B5F;
+      --gold: #E3B34C;          /* warm gold */
+      --gold-light: #F5D58C;
+      --gold-dark: #B38728;
+      --blush: #E6B8B8;         /* soft pink */
+      --blush-dark: #D4A5A5;
+      --blush-light: #FAD2D2;
+      --text-light: #EAEAEA;
+      --text-soft: #C6C6C6;
+      --bg-deep: #0A0A0A;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--text-light);
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      overflow-x: hidden;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* subtle organic overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 40% 50%, rgba(143, 188, 143, 0.05) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 20%, rgba(230, 184, 184, 0.04) 0%, transparent 60%),
+                  repeating-linear-gradient(45deg, rgba(255,255,255,0.005) 0px, rgba(255,255,255,0.005) 1px, transparent 1px, transparent 12px);
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* header with soft gradients */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 60px 20px;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(143, 188, 143, 0.18) 0%, transparent 65%),
+        radial-gradient(ellipse at 80% 70%, rgba(230, 184, 184, 0.12) 0%, transparent 70%),
+        linear-gradient(145deg, #050505 0%, #1A150A 100%);
+      border-bottom: 2px solid var(--sage-deep);
+    }
+
+    .header-frame {
+      border: 2px solid var(--sage);
+      padding: 50px 60px;
+      position: relative;
+      max-width: 880px;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.5);
+      backdrop-filter: blur(4px);
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.8), 0 0 0 1px rgba(227, 179, 76, 0.25) inset;
+    }
+
+    .corner-tl, .corner-tr, .corner-bl, .corner-br {
+      position: absolute;
+      color: var(--blush);
+      font-size: 2.2rem;
+      line-height: 1;
+      filter: drop-shadow(0 0 6px var(--sage));
+      opacity: 0.8;
+    }
+    .corner-tl { top: -20px; left: -8px; }
+    .corner-tr { top: -20px; right: -8px; }
+    .corner-bl { bottom: -20px; left: -8px; }
+    .corner-br { bottom: -20px; right: -8px; }
+
+    /* ---------- profile image: fading edges + 3D pop ---------- */
+    .profile-frame {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 30px;
+      position: relative;
+      border-radius: 50%;
+      padding: 0; /* no extra border */
+      background: transparent;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.6));
+    }
+
+    .profile-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      /* fade edges with radial gradient mask */
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 70%, transparent 100%);
+      mask-image: radial-gradient(circle at 50% 50%, black 70%, transparent 100%);
+      /* subtle 3D pop */
+      box-shadow: 
+        0 15px 25px -8px rgba(0,0,0,0.7),
+        0 0 0 2px var(--gold-light),
+        0 0 0 5px rgba(143, 188, 143, 0.3);
+    }
+
+    .profile-frame:hover img {
+      transform: scale(1.02) translateY(-4px);
+      filter: brightness(1.05);
+      box-shadow: 
+        0 22px 30px -10px black,
+        0 0 0 3px var(--gold),
+        0 0 0 6px rgba(230, 184, 184, 0.5);
+    }
+
+    .profile-placeholder {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--sage-deep), var(--black-soft));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4.5rem; color: var(--blush);
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, black 70%, transparent 100%);
+      mask-image: radial-gradient(circle at 50% 50%, black 70%, transparent 100%);
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-weight: 900;
+      background: linear-gradient(145deg, var(--gold), var(--blush-light), var(--sage-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      filter: drop-shadow(2px 4px 8px rgba(0,0,0,0.7));
+      margin-bottom: 5px;
+    }
+
+    .header-divider {
+      width: 280px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sage), var(--blush), var(--gold), var(--sage), transparent);
+      margin: 18px auto; position: relative;
+    }
+    .header-divider::before {
+      content: '❋';
+      position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+      color: var(--blush); font-size: 1.8rem;
+      background: var(--black); padding: 0 15px;
+      text-shadow: 0 0 10px var(--sage);
+    }
+
+    .tagline {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      color: var(--text-soft);
+      font-size: 1.2rem; letter-spacing: 1px;
+      border-bottom: 1px dashed var(--blush-dark);
+      display: inline-block;
+      padding-bottom: 8px;
+    }
+
+    .ceo-badge {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem; letter-spacing: 3.5px;
+      text-transform: uppercase; color: var(--sage-light);
+      margin-top: 20px; padding: 8px 30px;
+      border: 1px solid rgba(227, 179, 76, 0.5);
+      display: inline-block;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(2px);
+      border-radius: 50px;
+    }
+    .ceo-badge::before { content: '◈'; color: var(--blush); margin-right: 10px; font-size: 0.9rem; }
+    .ceo-badge::after  { content: '◈'; color: var(--sage); margin-left: 10px; font-size: 0.9rem; }
+
+    .btn-download {
+      display: inline-block; margin-top: 30px; padding: 16px 48px;
+      background: linear-gradient(145deg, var(--gold-dark), var(--gold), var(--gold-light));
+      color: var(--black); font-family: 'Cinzel', serif; font-weight: 700;
+      font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase;
+      text-decoration: none; border: 1px solid var(--blush);
+      transition: all 0.4s ease;
+      clip-path: polygon(15px 0%, calc(100% - 15px) 0%, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0% 50%);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    }
+    .btn-download:hover {
+      background: linear-gradient(145deg, var(--blush-dark), var(--blush), var(--blush-light));
+      color: black; transform: scale(1.05);
+      box-shadow: 0 0 30px var(--sage);
+      border-color: var(--gold);
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.95);
+      border-bottom: 2px solid var(--sage-deep);
+      padding: 12px 5%; display: flex; justify-content: center;
+      gap: 10px; flex-wrap: wrap; backdrop-filter: blur(10px);
+    }
+    nav a {
+      color: var(--text-soft); font-family: 'Cinzel', serif;
+      font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+      text-decoration: none; padding: 6px 18px;
+      border: 1px solid transparent; transition: all 0.3s ease;
+      border-radius: 30px;
+    }
+    nav a:hover {
+      color: var(--gold); border-color: var(--blush);
+      background: rgba(143, 188, 143, 0.1);
+    }
+
+    section {
+      padding: 80px 8%; max-width: 1200px; margin: 0 auto;
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--gold); letter-spacing: 5px; text-transform: uppercase;
+      text-shadow: 2px 2px 0 var(--sage-deep), 4px 4px 0 rgba(0,0,0,0.3);
+    }
+    .section-ornament {
+      width: 340px; max-width: 80%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--blush), var(--sage), transparent);
+      margin: 18px auto 0; position: relative;
+    }
+    .section-ornament::before {
+      content: '⬩⬩⬩'; position: absolute; top: -13px; left: 50%;
+      transform: translateX(-50%); color: var(--blush); font-size: 1rem;
+      background: var(--black); padding: 0 15px;
+      letter-spacing: 8px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #141414, #070707);
+      border-left: 6px solid var(--blush);
+      border-right: 2px solid var(--sage);
+      border-top: 1px solid var(--sage);
+      border-bottom: 1px solid var(--blush-dark);
+      padding: 40px 45px;
+      margin-bottom: 25px;
+      transition: all 0.4s ease;
+      box-shadow: 0 15px 35px -15px black;
+    }
+    .card:hover {
+      border-left-color: var(--gold);
+      box-shadow: 0 20px 45px -10px rgba(143, 188, 143, 0.4);
+      transform: translateY(-4px);
+    }
+    .card p { line-height: 1.9; color: #ddd; font-size: 1.1rem; }
+
+    .timeline { position: relative; padding-left: 30px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 10px; bottom: 10px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--gold), var(--sage), var(--blush), var(--gold));
+      border-radius: 3px;
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 30px; padding: 20px 30px;
+      background: rgba(20,20,20,0.6);
+      border: 1px solid rgba(227, 179, 76, 0.15);
+      transition: all 0.3s ease;
+      border-radius: 4px 30px 4px 30px;
+    }
+    .timeline-item::before {
+      content: '◈'; position: absolute; left: -44px; top: 50%;
+      transform: translateY(-50%); color: var(--blush); font-size: 1.2rem;
+      background: var(--black); padding: 4px; border-radius: 50%;
+      border: 1px solid var(--gold);
+    }
+    .timeline-item:hover {
+      border-color: var(--blush);
+      background: rgba(30,30,30,0.9);
+      transform: translateX(8px);
+    }
+    .timeline-item strong {
+      font-family: 'Cinzel', serif; color: var(--gold);
+      font-size: 1rem; display: block; margin-bottom: 6px;
+    }
+    .timeline-item span { color: #ccc; font-style: italic; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 30px; }
+
+    .referee-card {
+      background: linear-gradient(145deg, #131313, #080808);
+      border: 1px solid var(--sage); padding: 35px 20px;
+      position: relative; text-align: center; transition: all 0.4s ease;
+      border-radius: 30px 4px 30px 4px;
+    }
+    .referee-card::before {
+      content: '⚜'; position: absolute; top: -16px; left: 50%;
+      transform: translateX(-50%); color: var(--blush); font-size: 2.2rem;
+      background: var(--black); padding: 0 15px;
+      text-shadow: 0 0 12px var(--gold);
+    }
+    .referee-card:hover {
+      transform: translateY(-8px); border-color: var(--gold);
+      box-shadow: 0 20px 40px rgba(227, 179, 76, 0.2);
+    }
+    .referee-card h3 {
+      font-family: 'Cinzel', serif; color: var(--gold);
+      font-size: 1.2rem; margin-bottom: 8px;
+    }
+    .referee-card p { color: #b0b0b0; font-size: 0.95rem; line-height: 1.7; font-style: italic; }
+    .referee-card .phone {
+      margin-top: 15px; color: var(--blush); font-style: normal;
+      font-family: 'Cinzel', serif; font-size: 0.9rem; letter-spacing: 1px;
+    }
+
+    .strengths-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 16px; }
+    .strength-item {
+      display: flex; align-items: flex-start; gap: 14px; padding: 16px 22px;
+      background: rgba(143, 188, 143, 0.05); border-left: 4px solid var(--sage-deep);
+      border-bottom: 1px solid rgba(230, 184, 184, 0.2);
+      transition: all 0.3s;
+    }
+    .strength-item:hover {
+      border-left-color: var(--blush);
+      background: rgba(227, 179, 76, 0.08);
+      transform: translateX(6px);
+    }
+    .strength-item .s-icon { color: var(--blush); font-size: 1.4rem; flex-shrink: 0; }
+    .strength-item span { color: #ddd; font-size: 1rem; line-height: 1.5; }
+
+    /* contact buttons with original brand colours (but softened) */
+    .contact-btns {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      justify-content: center; margin-bottom: 50px;
+    }
+    .contact-btns a {
+      display: inline-flex; align-items: center; gap: 12px; padding: 16px 35px;
+      font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 2px;
+      text-transform: uppercase; text-decoration: none;
+      border: 2px solid var(--sage); position: relative; overflow: hidden;
+      transition: all 0.4s ease; color: var(--text-light);
+      background: rgba(20,20,20,0.7);
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+    }
+    .contact-btns a i { font-size: 1.4rem; }
+    .contact-btns a:hover { transform: scale(1.05); border-color: var(--gold); }
+    .contact-btns a[href*="mailto"]:hover { background: #c71610cc; color: white; }
+    .contact-btns a[href*="wa.me"]:hover { background: #25D366cc; color: black; }
+    .contact-btns a[href*="instagram"]:hover { background: linear-gradient(45deg, #f09433cc, #d62976cc, #962fbfcc); color: white; }
+
+    .form-card {
+      background: linear-gradient(145deg, #131313, #030303);
+      border: 1px solid var(--blush-dark); padding: 45px; position: relative;
+      border-radius: 40px 8px 40px 8px;
+      box-shadow: 0 0 30px rgba(143, 188, 143, 0.15);
+    }
+    .form-card h3 {
+      font-family: 'Cinzel', serif; color: var(--gold);
+      letter-spacing: 2px; font-size: 1.4rem; margin-bottom: 6px;
+    }
+    .form-card > p { color: #bbb; font-style: italic; margin-bottom: 30px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    form input, form textarea {
+      width: 100%; padding: 14px 18px;
+      background: #0C0C0C; border: 1px solid var(--sage);
+      color: #f0f0f0; font-family: 'EB Garamond', serif;
+      font-size: 1rem; outline: none; transition: all 0.3s; margin-bottom: 18px;
+      border-radius: 8px;
+    }
+    form input:focus, form textarea:focus {
+      border-color: var(--blush); box-shadow: 0 0 20px rgba(230, 184, 184, 0.3);
+      background: #151515;
+    }
+
+    .btn-submit {
+      display: inline-block; padding: 16px 55px;
+      background: linear-gradient(145deg, var(--gold-dark), var(--gold));
+      color: black; font-family: 'Cinzel', serif; font-weight: 700;
+      font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase;
+      border: none; cursor: pointer; transition: all 0.4s ease;
+      clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0% 50%);
+    }
+    .btn-submit:hover {
+      background: linear-gradient(145deg, var(--blush-dark), var(--blush));
+      color: black; transform: scale(1.06);
+      box-shadow: 0 0 35px var(--gold);
+    }
+
+    /* tribridge updated link */
+    .tribridge-banner {
+      margin-top: 50px; border: 2px solid var(--blush); position: relative;
+      background: linear-gradient(145deg, rgba(90, 120, 90, 0.2), black);
+      overflow: hidden;
+      border-radius: 60px 8px 60px 8px;
+    }
+    .tribridge-banner::after {
+      content: 'TRIBRIDGE SERVICES';
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 7px;
+      color: var(--blush); background: black; padding: 0 20px; white-space: nowrap;
+    }
+    .tribridge-inner { padding: 45px 30px; text-align: center; }
+    .tribridge-label {
+      font-family: 'Cinzel', serif; font-size: 1.2rem;
+      color: var(--gold-light); letter-spacing: 2px; margin-bottom: 10px;
+    }
+    .tribridge-sub {
+      font-style: italic; color: #b0b0b0;
+      font-size: 1rem; margin-bottom: 30px;
+    }
+    .btn-tribridge {
+      display: inline-flex; align-items: center; gap: 16px; padding: 18px 48px;
+      background: linear-gradient(145deg, var(--sage-deep), var(--sage));
+      border: 2px solid var(--gold); color: black;
+      font-family: 'Cinzel', serif; font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase; text-decoration: none;
+      transition: all 0.4s ease; position: relative; overflow: hidden;
+      clip-path: polygon(16px 0%, calc(100% - 16px) 0%, 100% 50%, calc(100% - 16px) 100%, 16px 100%, 0% 50%);
+    }
+    .btn-tribridge:hover {
+      background: linear-gradient(145deg, var(--blush-dark), var(--blush));
+      color: black; border-color: var(--gold);
+      box-shadow: 0 0 40px var(--sage);
+    }
+    .tb-arrow { transition: transform 0.3s; }
+    .btn-tribridge:hover .tb-arrow { transform: translateX(8px); }
+
+    footer {
+      border-top: 2px solid var(--sage); padding: 40px 5%;
+      text-align: center; background: #030303;
+    }
+    footer::before {
+      content: '✦ ✦ ✦'; display: block; color: var(--blush);
+      font-size: 1.2rem; letter-spacing: 14px; margin-bottom: 16px;
+    }
+    footer p {
+      font-family: 'Cinzel', serif; color: var(--gold-dark);
+      font-size: 0.8rem; letter-spacing: 4px;
+    }
+
+    .scroll-top {
+      position: fixed; bottom: 30px; right: 30px;
+      width: 52px; height: 52px;
+      background: linear-gradient(145deg, var(--gold), var(--gold-dark));
+      color: black; display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; cursor: pointer; border: none;
+      opacity: 0; transition: all 0.4s; z-index: 200;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+    .scroll-top.show { opacity: 1; }
+    .scroll-top:hover {
+      background: linear-gradient(145deg, var(--blush), var(--blush-dark));
+      color: black; transform: rotate(180deg) scale(1.1);
+    }
+
+    @media (max-width: 600px) {
+      .header-frame { padding: 35px 25px; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding: 60px 5%; }
+      .card { padding: 25px 20px; }
+      .btn-tribridge { padding: 14px 28px; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+<header id="home">
+  <div class="header-frame">
+    <span class="corner-tl">✦</span>
+    <span class="corner-tr">✦</span>
+    <span class="corner-bl">✦</span>
+    <span class="corner-br">✦</span>
+
+    <div class="profile-frame">
+      <img src="file_00000000451071f5ba21d40ece4fbe74.jpg" alt="Ashraf Abdalla"
+        onerror="this.style.display='none';document.getElementById('ph').style.display='flex';">
+      <div class="profile-placeholder" id="ph" style="display:none;">⚜</div>
+    </div>
+
+    <h1>Ashraf Abdalla</h1>
+    <div class="header-divider"></div>
+    <p class="tagline">Aspiring Nurse · Multilingual · Counselling Psychology · Certified HTML Developer</p>
+    <p class="ceo-badge">CEO & Founder — TriBridge Services / TriBridge Studios</p>
+    <a href="https://ashraf-abdalla-resume.onrender.com" class="btn-download" target="_blank"><i class="fas fa-download" style="margin-right: 8px;"></i> Download CV</a>
+  </div>
+</header>
+
+<nav>
+  <a href="#mission">Mission</a>
+  <a href="#vision">Vision</a>
+  <a href="#academics">Academics</a>
+  <a href="#leadership">Leadership</a>
+  <a href="#strengths">Strengths</a>
+  <a href="#referees">Referees</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="mission">
+  <div class="section-header"><h2>Mission Statement</h2><div class="section-ornament"></div></div>
+  <div class="card"><p>My mission is to pursue a professional career in nursing and healthcare where I can integrate academic excellence, empathy, multilingual communication, and structured psychological understanding to improve patient wellbeing and community health outcomes.</p></div>
+</section>
+
+<section id="vision">
+  <div class="section-header"><h2>Career Vision</h2><div class="section-ornament"></div></div>
+  <div class="card"><p>I envision becoming a highly competent and ethically grounded healthcare professional who contributes meaningfully to modern medical systems. Through continuous education, practical experience, and leadership development, I aim to serve diverse communities and advocate for accessible, compassionate healthcare.</p></div>
+</section>
+
+<section id="academics">
+  <div class="section-header"><h2>Academic Timeline</h2><div class="section-ornament"></div></div>
+  <div class="card">
+    <div class="timeline">
+      <div class="timeline-item"><strong>2014 – 2021</strong><span>Kipketer Primary School — KCPE: 366/500 (B+)</span></div>
+      <div class="timeline-item"><strong>2022 – 2025</strong><span>Njoro Boys High School — KCSE: C+</span></div>
+      <div class="timeline-item"><strong>July 2024</strong><span>Counselling Psychology Certificate — Certified</span></div>
+      <div class="timeline-item"><strong>January 2026</strong><span>HTML code development certificate</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership">
+  <div class="section-header"><h2>Leadership & Community</h2><div class="section-ornament"></div></div>
+  <div class="card"><p>Leadership through mentoring peers, coordinating academic groups, and supporting school initiatives. Applied counselling knowledge to assist peers with academic and personal challenges. Committed to community engagement and continuous learning as foundations for future healthcare leadership.</p></div>
+</section>
+
+<section id="strengths">
+  <div class="section-header"><h2>Core Strengths</h2><div class="section-ornament"></div></div>
+  <div class="card">
+    <div class="strengths-list">
+      <div class="strength-item"><span class="s-icon">⚜</span><span>English & Swahili — Professional Fluency</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>French — Advanced Proficiency</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>Patient Counselling & Emotional Support</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>Healthcare Assistance Knowledge</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>Organization, Planning & Structured Thinking</span></div>
+      <div class="strength-item"><span class="s-icon">⚜</span><span>HTML Coding & Web Development</span></div>
+      <div class="strength-item"><span class="s-icon">👑</span><span>Entrepreneurship — CEO & Founder, TriBridge Services / TriBridge Studios</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="referees">
+  <div class="section-header"><h2>Referees</h2><div class="section-ornament"></div></div>
+  <div class="grid">
+    <div class="referee-card"><h3>Elizabeth Wanyoike</h3><p>School Counsellor<br>Njoro Boys High School</p><p class="phone">0754 683 495</p></div>
+    <div class="referee-card"><h3>Jackob Haywood Ondiko</h3><p>French Teacher & Mentor<br>Njoro Boys High School</p><p class="phone">0712 062 375</p></div>
+    <div class="referee-card"><h3>Mogaka Stephen</h3><p>Class Teacher & Mentor<br>Njoro Boys High School</p><p class="phone">0723 229 142</p></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-header"><h2>Contact Me</h2><div class="section-ornament"></div></div>
+
+  <div class="contact-btns">
+    <a href="mailto:ashrafabdalla0101@gmail.com"><i class="fas fa-envelope"></i> <span>Email Me</span></a>
+    <a href="https://wa.me/254785117163?text=Hi%20Ashraf%2C%20I%20would%20like%20to%20know%20more%20about%20your%20professional%20journey%20and%20services.%20Looking%20forward%20to%20hearing%20from%20you." target="_blank"><i class="fab fa-whatsapp"></i> <span>WhatsApp</span></a>
+    <a href="https://instagram.com/4_.5h.r4f" target="_blank"><i class="fab fa-instagram"></i> <span>Instagram</span></a>
+  </div>
+
+  <div class="form-card">
+    <h3>Request an Introduction</h3>
+    <p>Fill in your details below and Ashraf shall reach out via Email or WhatsApp.</p>
+    <form action="mailto:ashrafabdalla0101@gmail.com" method="post" enctype="text/plain">
+      <div class="form-row">
+        <input type="text" name="Name" placeholder="Your Full Name" required>
+        <input type="email" name="Email" placeholder="Your Email Address" required>
+      </div>
+      <input type="tel" name="Phone" placeholder="Your Phone Number" required>
+      <textarea name="Message" placeholder="Your Message..." rows="5" required></textarea>
+      <button type="submit" class="btn-submit">✦ SUBMIT ✦</button>
+    </form>
+  </div>
+
+  <!-- UPDATED TRIBRIDGE LINK -->
+  <div class="tribridge-banner">
+    <div class="tribridge-inner">
+      <p class="tribridge-label">Beyond this portfolio, a creative empire awaits.</p>
+      <p class="tribridge-sub">Step into the world Ashraf built — vision meets craft.</p>
+      <a href="https://tribridgeserviceskenya.netlify.app/" target="_blank" class="btn-tribridge">
+        <span><i class="fas fa-crown" style="font-size: 1.1rem;"></i></span>
+        <span>Visit TriBridge services</span>
+        <span class="tb-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 · Ashraf Abdalla · Academic Portfolio · All Rights Reserved</p>
+</footer>
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+  }, { threshold: 0.1 });
+  document.querySelectorAll('section').forEach(s => observer.observe(s));
+
+  const scrollBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollBtn.classList.toggle('show', window.scrollY > 400);
+    let current = '';
+    document.querySelectorAll('section[id]').forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    });
+    document.querySelectorAll('nav a').forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+  </html>
