@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ashraf Abdalla</title>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+:root{
+  --pink:#ff6eb4;--pink-d:#c2185b;--pink-l:#ffc2e2;
+  --blue:#4fc3f7;--blue-d:#0277bd;--blue-l:#b3e5fc;
+  --black:#080c14;--dark:#0f172a;--glass:rgba(255,255,255,0.06);
+  --border:rgba(255,110,180,0.25);
+}
+body{background:var(--black);color:#e0e0e0;font-family:'Patrick Hand',cursive;overflow-x:hidden}
+
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 20%,rgba(79,195,247,0.08) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 60% at 80% 80%,rgba(255,110,180,0.1) 0%,transparent 70%);
+}
+
+/* ── DYNAMIC ISLAND NAV ── */
+.island-wrap{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:999;display:flex;flex-direction:column;align-items:center}
+
+.island-pill{
+  background:rgba(10,10,20,0.85);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1.5px solid rgba(255,110,180,0.35);
+  border-radius:50px;padding:10px 22px;
+  display:flex;align-items:center;gap:14px;
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(255,110,180,0.2),0 0 40px rgba(79,195,247,0.1);
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);
+  user-select:none;
+}
+.island-pill:hover{
+  box-shadow:0 0 30px rgba(255,110,180,0.4),0 0 60px rgba(79,195,247,0.2);
+  border-color:var(--pink);
+  transform:scale(1.04);
+}
+.island-pill .avatar{
+  width:30px;height:30px;border-radius:50%;
+  border:2px solid var(--pink);
+  object-fit:cover;background:var(--dark);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  flex-shrink:0;
+}
+.island-pill .name{font-size:.85rem;color:var(--pink-l);letter-spacing:.5px}
+.island-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 6px var(--blue)}50%{opacity:.4;box-shadow:none}}
+
+.island-menu{
+  margin-top:10px;
+  background:rgba(10,10,22,0.92);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1.5px solid rgba(79,195,247,0.25);
+  border-radius:24px;padding:18px 24px;
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  max-width:520px;width:max-content;
+  opacity:0;transform:translateY(-10px) scale(.96);
+  pointer-events:none;
+  transition:all .35s cubic-bezier(.34,1.56,.64,1);
+  box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 30px rgba(79,195,247,0.1);
+}
+.island-menu.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all}
+.island-menu a{
+  color:var(--blue-l);font-family:'Patrick Hand',cursive;
+  font-size:.82rem;text-decoration:none;padding:6px 14px;
+  border-radius:20px;border:1px solid rgba(79,195,247,0.2);
+  background:rgba(79,195,247,0.06);transition:all .25s;letter-spacing:.5px;
+}
+.island-menu a:hover{background:var(--pink);color:#fff;border-color:var(--pink);transform:scale(1.07)}
+
+/* ── HEADER ── */
+header{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:120px 20px 60px;position:relative;z-index:1;
+}
+.profile-ring{
+  width:160px;height:160px;border-radius:50%;
+  border:3px solid var(--pink);padding:4px;
+  margin:0 auto 28px;
+  box-shadow:0 0 0 2px var(--blue-d),0 0 30px rgba(255,110,180,0.5),0 0 70px rgba(79,195,247,0.2);
+  animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{box-shadow:0 0 0 2px var(--blue-d),0 0 30px rgba(255,110,180,0.4)}
+  50%{box-shadow:0 0 0 2px var(--blue-d),0 0 50px rgba(255,110,180,0.8),0 0 90px rgba(79,195,247,0.3)}
+}
+.profile-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.profile-ph{width:100%;height:100%;border-radius:50%;background:var(--dark);display:flex;align-items:center;justify-content:center;font-size:3rem}
+
+h1{
+  font-size:clamp(2.2rem,6vw,4rem);
+  background:linear-gradient(135deg,var(--pink),var(--blue),var(--pink-l));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:2px;line-height:1.1;
+}
+.tagline{font-size:1rem;color:rgba(255,194,226,0.75);margin-top:10px;letter-spacing:.5px}
+.badge{
+  display:inline-block;margin-top:14px;padding:7px 20px;
+  border:1px solid rgba(255,110,180,0.4);border-radius:30px;
+  background:rgba(255,110,180,0.07);color:var(--pink-l);
+  font-size:.8rem;letter-spacing:1px;
+}
+.badge::before{content:'✦ ';color:var(--blue)}.badge::after{content:' ✦';color:var(--blue)}
+.btn-cv{
+  display:inline-block;margin-top:28px;padding:13px 36px;
+  background:linear-gradient(135deg,var(--pink-d),var(--pink),var(--blue));
+  color:#fff;text-decoration:none;border-radius:40px;
+  font-family:'Patrick Hand',cursive;font-size:.9rem;letter-spacing:1px;
+  transition:all .35s;border:none;
+  box-shadow:0 4px 20px rgba(255,110,180,0.3);
+}
+.btn-cv:hover{transform:scale(1.06);box-shadow:0 6px 30px rgba(79,195,247,0.4)}
+
+/* ── SECTIONS ── */
+section{
+  padding:70px 8%;max-width:1050px;margin:0 auto;
+  opacity:0;transform:translateY(35px);
+  transition:opacity .8s ease,transform .8s ease;
+  position:relative;z-index:1;
+}
+section.on{opacity:1;transform:translateY(0)}
+.sh{text-align:center;margin-bottom:40px}
+.sh h2{
+  font-size:clamp(1.5rem,3vw,2.1rem);
+  background:linear-gradient(90deg,var(--pink),var(--blue));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:2px;
+}
+.sh-line{
+  width:200px;height:2px;margin:10px auto 0;
+  background:linear-gradient(90deg,transparent,var(--pink),var(--blue),transparent);
+  position:relative;
+}
+.sh-line::after{content:'◆';position:absolute;top:-8px;left:50%;transform:translateX(-50%);color:var(--blue);font-size:.75rem}
+
+.card{
+  background:var(--glass);border:1px solid var(--border);
+  backdrop-filter:blur(12px);border-radius:20px;
+  padding:30px 36px;margin-bottom:22px;
+  transition:all .35s;
+}
+.card:hover{transform:translateY(-4px);border-color:var(--pink);box-shadow:0 10px 35px rgba(255,110,180,0.12)}
+.card p{line-height:1.9;color:rgba(224,224,224,0.85);font-size:1.05rem}
+
+/* timeline */
+.tl{position:relative;padding-left:28px}
+.tl::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--pink),var(--blue))}
+.ti{position:relative;margin-bottom:22px;padding:18px 22px;background:var(--glass);border:1px solid rgba(79,195,247,0.2);border-radius:16px;transition:all .3s}
+.ti::before{content:'◆';position:absolute;left:-39px;top:50%;transform:translateY(-50%);color:var(--pink);font-size:.8rem;background:var(--black);padding:2px}
+.ti:hover{border-color:var(--blue);transform:translateX(4px)}
+.ti strong{display:block;color:var(--blue);margin-bottom:4px;font-size:.9rem}
+.ti span{color:rgba(224,224,224,.8);font-style:italic}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+
+/* referee */
+.rc{
+  background:var(--glass);border:1px solid var(--border);
+  border-radius:20px;padding:26px;text-align:center;
+  transition:all .35s;position:relative;
+}
+.rc::before{content:'⚜';position:absolute;top:-13px;left:50%;transform:translateX(-50%);color:var(--pink);background:var(--black);padding:0 8px;font-size:1.4rem}
+.rc:hover{transform:translateY(-6px);border-color:var(--blue);box-shadow:0 12px 35px rgba(79,195,247,0.15)}
+.rc h3{color:var(--pink);margin-bottom:6px;font-size:1rem}
+.rc p{color:rgba(224,224,224,.75);font-size:.9rem;font-style:italic;line-height:1.6}
+.rc .ph{color:var(--blue-l);font-style:normal;margin-top:8px;font-size:.85rem}
+
+/* strengths */
+.sl{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.si{
+  display:flex;align-items:flex-start;gap:10px;padding:14px 18px;
+  background:rgba(79,195,247,0.05);border-left:3px solid var(--blue-d);
+  border-radius:0 12px 12px 0;transition:all .3s;
+}
+.si:hover{border-left-color:var(--pink);background:rgba(255,110,180,0.07);transform:translateX(3px)}
+.si .ic{color:var(--pink);font-size:1.1rem;flex-shrink:0}
+.si span{color:rgba(224,224,224,.85);font-size:.95rem;line-height:1.5}
+
+/* hobbies */
+.hb{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.hb-tag{
+  padding:10px 22px;border-radius:30px;
+  border:1px solid rgba(255,110,180,0.35);
+  background:rgba(255,110,180,0.07);color:var(--pink-l);
+  font-size:.9rem;letter-spacing:.5px;transition:all .3s;
+}
+.hb-tag:hover{background:var(--pink);color:#fff;transform:scale(1.07)}
+
+/* contact */
+.cb{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:36px}
+.cb a{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 26px;
+  border-radius:30px;border:1.5px solid rgba(79,195,247,0.4);
+  background:rgba(79,195,247,0.06);color:var(--blue-l);
+  text-decoration:none;font-family:'Patrick Hand',cursive;font-size:.85rem;letter-spacing:.5px;
+  transition:all .3s;
+}
+.cb a:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:scale(1.06)}
+.cb .wa{border-color:rgba(37,211,102,.4);background:rgba(37,211,102,.06);color:#b9f5c8}
+.cb .wa:hover{background:#25d366;color:#fff;border-color:#25d366}
+.cb .ig{border-color:rgba(255,110,180,.4);background:rgba(255,110,180,.06);color:var(--pink-l)}
+.cb .ig:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+
+.fc{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:36px}
+.fc h3{color:var(--pink);margin-bottom:6px;font-size:1.05rem}
+.fc>p{color:rgba(224,224,224,.7);font-style:italic;margin-bottom:22px;font-size:.95rem}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+form input,form textarea{
+  width:100%;padding:12px 16px;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(79,195,247,0.25);border-radius:12px;
+  color:#e0e0e0;font-family:'Patrick Hand',cursive;font-size:1rem;
+  outline:none;transition:border-color .3s;margin-bottom:14px;
+}
+form input:focus,form textarea:focus{border-color:var(--pink);box-shadow:0 0 12px rgba(255,110,180,0.1)}
+form input::placeholder,form textarea::placeholder{color:rgba(224,224,224,.3);font-style:italic}
+form textarea{resize:vertical;min-height:110px}
+.bs{
+  padding:13px 44px;border-radius:30px;
+  background:linear-gradient(135deg,var(--pink-d),var(--pink),var(--blue));
+  color:#fff;border:none;cursor:pointer;
+  font-family:'Patrick Hand',cursive;font-size:.9rem;letter-spacing:1px;
+  transition:all .35s;box-shadow:0 4px 20px rgba(255,110,180,0.3);
+}
+.bs:hover{transform:scale(1.05);box-shadow:0 6px 30px rgba(79,195,247,0.35)}
+
+/* tribridge */
+.tb{
+  margin-top:36px;border:1.5px solid rgba(255,110,180,0.3);
+  border-radius:24px;background:rgba(255,110,180,0.05);
+  text-align:center;padding:36px;position:relative;overflow:hidden;
+}
+.tb::before{
+  content:'TRIBRIDGE STUDIOS';position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  font-size:.65rem;letter-spacing:5px;color:var(--pink);background:var(--black);padding:0 14px;white-space:nowrap;
+}
+.tb p{color:rgba(255,194,226,.8);margin-bottom:8px;font-size:.95rem}
+.tb .sub{font-style:italic;font-size:.88rem;opacity:.7;margin-bottom:24px}
+.btn-tb{
+  display:inline-flex;align-items:center;gap:10px;padding:13px 36px;
+  background:linear-gradient(135deg,var(--pink-d),var(--pink));
+  color:#fff;text-decoration:none;border-radius:30px;
+  font-family:'Patrick Hand',cursive;font-size:.85rem;letter-spacing:1px;
+  transition:all .35s;box-shadow:0 4px 20px rgba(255,110,180,0.25);
+}
+.btn-tb:hover{background:linear-gradient(135deg,var(--blue-d),var(--blue));transform:scale(1.06);box-shadow:0 6px 28px rgba(79,195,247,0.35)}
+.arr{transition:transform .3s}.btn-tb:hover .arr{transform:translateX(5px)}
+
+/* divider */
+.div{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--pink),var(--blue),transparent);opacity:.4;margin:0}
+
+/* footer */
+footer{
+  border-top:1px solid rgba(255,110,180,0.2);padding:36px 5%;
+  text-align:center;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6));
+  position:relative;z-index:1;
+}
+footer p{color:rgba(224,224,224,.4);font-size:.8rem;letter-spacing:2px}
+
+/* scroll top */
+.st{
+  position:fixed;bottom:28px;right:28px;width:44px;height:44px;
+  background:linear-gradient(135deg,var(--pink),var(--blue));
+  border:none;border-radius:50%;color:#fff;font-size:1rem;
+  cursor:pointer;opacity:0;transition:all .4s;z-index:200;
+  box-shadow:0 4px 20px rgba(255,110,180,0.4);
+}
+.st.show{opacity:1}.st:hover{transform:scale(1.15)}
+
+@media(max-width:600px){
+  header{padding:110px 16px 50px}
+  .fr{grid-template-columns:1fr}
+  section{padding:55px 5%}
+  .island-menu{width:90vw}
+}
+</style>
+</head>
+<body>
+
+<!-- DYNAMIC ISLAND -->
+<div class="island-wrap">
+  <div class="island-pill" id="pill" onclick="toggleMenu()">
+    <div class="avatar">
+      <img src="IMG_20260219_141133.jpg" alt="A" onerror="this.style.display='none';this.parentNode.innerHTML='🌸'">
+    </div>
+    <span class="name">Ashraf Abdalla</span>
+    <span class="dot"></span>
+  </div>
+  <div class="island-menu" id="menu">
+    <a href="#mission">Mission</a>
+    <a href="#vision">Vision</a>
+    <a href="#academics">Academics</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#strengths">Strengths</a>
+    <a href="#referees">Referees</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="home">
+  <div class="profile-ring">
+    <img src="IMG_20260219_141133.jpg" alt="Ashraf Abdalla"
+      onerror="this.style.display='none';document.getElementById('ph').style.display='flex'">
+    <div class="profile-ph" id="ph" style="display:none">🌸</div>
+  </div>
+  <h1>Ashraf Abdalla</h1>
+  <p class="tagline">Aspiring Nurse · Multilingual Communicator · Counselling Psychology · HTML Coder</p>
+  <p class="badge">CEO &amp; Founder — TriBridge Services / TriBridge Studios</p>
+  <a href="https://ashraf-abdalla-resume.onrender.com" class="btn-cv" target="_blank">⬇ Download Curriculum Vitæ</a>
+</header>
+
+<div class="div"></div>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="sh"><h2>Mission Statement</h2><div class="sh-line"></div></div>
+  <div class="card"><p>My mission is to pursue a professional career in nursing and healthcare where I can integrate academic excellence, empathy, multilingual communication, and structured psychological understanding to improve patient wellbeing and community health outcomes.</p></div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="sh"><h2>Career Vision</h2><div class="sh-line"></div></div>
+  <div class="card"><p>I envision becoming a highly competent and ethically grounded healthcare professional who contributes meaningfully to modern medical systems. Through continuous education, practical experience, and leadership development, I aim to serve diverse communities and advocate for accessible, compassionate healthcare.</p></div>
+</section>
+
+<!-- ACADEMICS -->
+<section id="academics">
+  <div class="sh"><h2>Academic Timeline</h2><div class="sh-line"></div></div>
+  <div class="card">
+    <div class="tl">
+      <div class="ti"><strong>2014 – 2021</strong><span>Kipketer Primary School — KCPE: 366/500 (B+)</span></div>
+      <div class="ti"><strong>2022 – 2025</strong><span>Njoro Boys High School — KCSE: C+</span></div>
+      <div class="ti"><strong>July 2024</strong><span>Counselling Psychology Certificate — Certified</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section id="hobbies">
+  <div class="sh"><h2>Hobbies &amp; Interests</h2><div class="sh-line"></div></div>
+  <div class="card">
+    <div class="hb">
+      <span class="hb-tag">🍳 Cooking</span>
+      <span class="hb-tag">💻 Coding (HTML/CSS/Python)</span>
+      <span class="hb-tag">🎵 Music</span>
+      <span class="hb-tag">✍️ Writing — "28"</span>
+      <span class="hb-tag">🇫🇷 French</span>
+      <span class="hb-tag">🐓 Livestock Care</span>
+      <span class="hb-tag">🌐 Web Development</span>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section id="strengths">
+  <div class="sh"><h2>Core Strengths</h2><div class="sh-line"></div></div>
+  <div class="card">
+    <div class="sl">
+      <div class="si"><span class="ic">⚜</span><span>English &amp; Swahili — Professional Fluency</span></div>
+      <div class="si"><span class="ic">⚜</span><span>French — Advanced Proficiency</span></div>
+      <div class="si"><span class="ic">⚜</span><span>Patient Counselling &amp; Emotional Support</span></div>
+      <div class="si"><span class="ic">⚜</span><span>Healthcare Assistance Knowledge</span></div>
+      <div class="si"><span class="ic">⚜</span><span>Organization, Planning &amp; Structured Thinking</span></div>
+      <div class="si"><span class="ic">⚜</span><span>HTML / CSS / Python Coding</span></div>
+      <div class="si"><span class="ic">👑</span><span>Entrepreneurship — CEO &amp; Founder, TriBridge Services / Studios</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- REFEREES -->
+<section id="referees">
+  <div class="sh"><h2>Referees</h2><div class="sh-line"></div></div>
+  <div class="grid">
+    <div class="rc"><h3>Elizabeth Wanyoike</h3><p>School Counsellor<br>Njoro Boys High School</p><p class="ph">0754 683 495</p></div>
+    <div class="rc"><h3>Jackob Haywood Ondiko</h3><p>French Teacher &amp; Mentor<br>Njoro Boys High School</p><p class="ph">0712 062 375</p></div>
+    <div class="rc"><h3>Mogaka Stephen</h3><p>Class Teacher &amp; Mentor<br>Njoro Boys High School</p><p class="ph">0723 229 142</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sh"><h2>Contact Me</h2><div class="sh-line"></div></div>
+  <div class="cb">
+    <a href="mailto:ashrafabdalla0101@gmail.com"><span>✉ Email Me</span></a>
+    <a href="https://wa.me/254785117163?text=Hi%20Ashraf!" target="_blank" class="wa"><span>📱 WhatsApp</span></a>
+    <a href="https://instagram.com/4_.5h.r4f" target="_blank" class="ig"><span>📷 Instagram</span></a>
+  </div>
+  <div class="fc">
+    <h3>Request an Introduction</h3>
+    <p>Fill in your details and Ashraf will get back to you.</p>
+    <form action="mailto:ashrafabdalla0101@gmail.com" method="post" enctype="text/plain">
+      <div class="fr">
+        <input type="text" name="Name" placeholder="Your Full Name" required>
+        <input type="email" name="Email" placeholder="Your Email" required>
+      </div>
+      <input type="tel" name="Phone" placeholder="Your Phone Number" required>
+      <textarea name="Message" placeholder="Your Message..." rows="5" required></textarea>
+      <button type="submit" class="bs">✦ Send Message ✦</button>
+    </form>
+  </div>
+  <div class="tb">
+    <p>Beyond this portfolio, a creative empire awaits.</p>
+    <p class="sub">Step into the world Ashraf built — where vision meets craft.</p>
+    <a href="https://tribridge-services.onrender.com" target="_blank" class="btn-tb">
+      <span>🎬 Visit TriBridge Studios</span><span class="arr">→</span>
+    </a>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<footer>
+  <p>© 2026 · Ashraf Abdalla · All Rights Reserved</p>
+</footer>
+
+<button class="st" id="st" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById('menu');
+  m.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  if(!document.querySelector('.island-wrap').contains(e.target)){
+    document.getElementById('menu').classList.remove('open');
+  }
+});
+document.querySelectorAll('.island-menu a').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('menu').classList.remove('open')});
+});
+
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('on')});
+},{threshold:0.1});
+document.querySelectorAll('section').forEach(function(s){obs.observe(s)});
+
+var st=document.getElementById('st');
+window.addEventListener('scroll',function(){st.classList.toggle('show',scrollY>400)});
+</script>
+</body>
+</html>
